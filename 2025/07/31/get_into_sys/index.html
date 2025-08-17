@@ -11,7 +11,7 @@
   
   <title>
     
-      有关Sys、初心者写下旅途的记录。 
+      有关Sys、初心者的奇妙之旅。 
       
       
     
@@ -56,7 +56,7 @@
   <body>
     <div id="app">
       <div class="header">
-  <a href="/">doruche's Blog</a>
+  <a href="/">doruche的Blog</a>
 </div>
 
 
@@ -98,7 +98,7 @@
     Jul 31, 2025
   </h3>
   <h1>
-    有关Sys、初心者写下旅途的记录。
+    有关Sys、初心者的奇妙之旅。
   </h1>
   <div class="content markdown-body">
     <p>这篇记录的语境接续<a href="/2025/07/30/end_of_1st_year_in_uni/" title="为我的大学一年级写下&#39;\0&#39;。">此前的一篇文章</a>，因为内容比较多，且相对独立，所以特拆开放在这里。</p>
@@ -118,7 +118,7 @@
 <p>至此，我仍然没有发现我希望追求的东西。啊，所谓的底层的、不变的事物，究竟是什么样的呢。这样的困惑时常会有。</p>
 <p>然后出于对Linux的好奇，我开始阅读TLPI，这也就是转机。</p>
 <p>TLPI是一本很棒的书。它依托于Linux，比较系统地介绍了操作系统的各个方面。我在十五天内快速通读了上册，跟着做了一些章节后的习题，获得了对系统级编程的初步认知。</p>
-<p>我慢慢开始喜欢C语言了。它虽然很原始，但是简介、直接，几乎每一步我都能清晰地知道我在做什么；而更高级的语言往往隐藏了很多细节，我不太喜欢对感知的缺失。这是优点还是缺点呢？我不清楚。</p>
+<p>我慢慢开始喜欢C语言了。它虽然很原始，但是简洁、直接，几乎每一步我都能清晰地知道我在做什么；而更高级的语言往往隐藏了很多细节，我不太喜欢对感知的缺失。这是优点还是缺点呢？我不清楚。</p>
 <p>但是，当我草草读罢上册，我很快就收手了。我意识到，我大概具备了一些基本的知识，而TLPI更多关注的是OS API&#x2F;ABI的应用层，而非底层原理，且很多都聚焦在Linux的特殊性质上，这仍然不具备普适性。该拐弯了，我对自己说。</p>
 <p>某天，我回想起了社团（啊对了，我加入了学校的开源技术协会）里的一位前辈推荐的一本书：CSAPP。稍作查询，我发现这大概正是我接下来需要的东西，所以我开始阅读。阅读的过程很痛苦，这实在不是一本轻松的读物，信息密度相当高，很多概念对我而言必须反复琢磨才能理解。</p>
 <p>第一次阅读，我主要学习了X64汇编，对内存、编译流程、缓存具备了基本认知。其实我大概也就认真读了对应这些内容的几章，别的并没有涉足。当然，这样的收获我已经很满足了。</p>
@@ -137,6 +137,7 @@
 <p>我主要依托于这些资料：</p>
 <ul>
 <li>OSTEP</li>
+<li>xv6</li>
 <li>清华的RCore</li>
 <li>PopOS (Writing an OS in Rust - Philipp Oppermann’s blog)</li>
 <li>Stephen Marz的OS Blog</li>
@@ -154,7 +155,7 @@
 </ul>
 <p>然后大概三周时间，我编写了一个简单的、无依赖的C编译器，drcc。仅仅支持相当小的C子集。也尝试做了一些优化。它遵循这样的流程：Source Code -&gt; AST -&gt; HIR (AST with semantic information) -&gt; MIR (Three-Address Code) -&gt; LIR (Concrete RISC-V assembly with virtual registers) -&gt; ASM (Valid RISC-V assembly code)。</p>
 <p>至此，第一年的学习基本上告一段落。写了这么多，我还是很喜欢系统编程。我感觉我现在才算刚刚入门，很多此前完全不了解的东西，现在才稍微有了一点点能力深入。</p>
-<p>期待之后的旅程咯。</p>
+<p>期待之后的旅程啦。</p>
 
   </div>
   
@@ -162,6 +163,8 @@
       <a id="older" class="blog-nav" href="/2025/07/30/end_of_1st_year_in_uni/">OLDER&nbsp;&gt;</a>
       
         
+          <a id="newer" class="blog-nav" href="/2025/08/11/nichijou_story/">&lt;&nbsp;NEWER</a>
+          
             
 </div>
         <div class="footer">
@@ -210,7 +213,7 @@
             </a>
           </span> -->
           
-            <input type="text" class="search-input" id="search-input" placeholder="$ grep...">
+            <input type="text" class="search-input" id="search-input" placeholder="「空」">
           
           <span class="search-close-icon" id="search-close-icon">
             <a href="javascript: void(0)">
