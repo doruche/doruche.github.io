@@ -55,6 +55,12 @@ a {
   height: 15px;
 }
 
+.links .social-icon {
+  width: 14px;
+  height: 14px;
+  vertical-align: -0.1em;
+}
+
 .search-result, .search-input, .post-item, .header, h1, h2, h3, h4, h5, h6 {
   font-family: "Montserrat", "Helvetica Neue", "Hiragino Sans GB", "LiHei Pro", Arial, sans-serif;
   font-weight: 400;

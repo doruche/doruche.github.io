@@ -1,6 +1,6 @@
 ---
 title: 有关Sys、初心者的奇妙之旅。
-date: 2025-07-31 15:05:09
+date: 2025-07-31
 tags: coding, sys
 ---
 

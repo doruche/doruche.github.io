@@ -41,6 +41,11 @@ link:
     path: https://github.com/doruche
     target: _blank
   -
+    name: bilibili
+    icon: bilibili
+    path: https://space.bilibili.com/375236120
+    target: _blank
+  -
     name: email
     icon: envelope
     path: mailto:doruche18@outlook.com
