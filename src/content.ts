@@ -47,7 +47,7 @@ const pageSchema = z.strictObject({
 });
 
 // Routes the generator already uses, so a page cannot replace them.
-const reservedPages = new Set(['archives', 'assets', 'posts', 'theme']);
+const reservedPages = new Set(['archive', 'assets', 'posts', 'theme']);
 
 function readMarkdown<T>(directory: string, schema: z.ZodType<T>) {
   if (!existsSync(directory)) return [];

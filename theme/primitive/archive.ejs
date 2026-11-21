@@ -1,4 +1,8 @@
-<h1 lang="en">Archive</h1>
+<% const count = years.reduce((total, group) => total + group.posts.length, 0); %>
+<header class="post-header" lang="en">
+  <p class="meta"><span><%= count %> <%= count === 1 ? 'post' : 'posts' %></span></p>
+  <h1>Archive</h1>
+</header>
 <% for (const group of years) { %>
   <section class="archive">
     <h2><%= group.year %></h2>

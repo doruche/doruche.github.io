@@ -14,7 +14,7 @@
   <header class="masthead">
     <a class="site-title" href="<%= url('/') %>"><%= site.title %></a>
     <nav aria-label="Site" lang="en">
-      <a class="text-link" href="<%= url('/archives/') %>"<%- route === '/archives/' ? ' aria-current="page"' : '' %>>Archive</a>
+      <a class="text-link" href="<%= url('/archive/') %>"<%- route === '/archive/' ? ' aria-current="page"' : '' %>>Archive</a>
       <% for (const page of pages) { %>
         <a class="text-link" href="<%= url(page.url) %>"<%- route === page.url ? ' aria-current="page"' : '' %>><%= page.title %></a>
       <% } %>

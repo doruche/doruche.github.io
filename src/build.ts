@@ -35,7 +35,7 @@ export function build(output: string) {
     page('/', site.title, template('home')({ posts, url }));
     const groups = Map.groupBy(posts, post => post.date.slice(0, 4));
     const years = Array.from(groups, ([year, posts]) => ({ year, posts }));
-    page('/archives/', `Archive · ${site.title}`, template('archives')({ years, url }));
+    page('/archive/', `Archive · ${site.title}`, template('archive')({ years, url }));
 
     posts.forEach((post, index) => {
       const html = renderMarkdown(post.markdown, post.file, routes, url);
