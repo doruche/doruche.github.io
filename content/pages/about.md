@@ -7,7 +7,7 @@ Used names: doruche; kiwaco.
 
 Programmer, developer, researcher, and writer.
 
-Foucused on:
+Focused on:
 - LLMs and infrastructure for LLM
 - Systems programming, including kernel and compilers
 - Building elegant software systems
