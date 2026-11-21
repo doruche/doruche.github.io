@@ -1,4 +1,4 @@
-# doruche的Blog
+# doruche's blog
 
 Source for [i.doruche.cc](https://i.doruche.cc/), a static blog with the Primitive theme.
 
