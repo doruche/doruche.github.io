@@ -89,7 +89,7 @@ a:is(:hover, :focus-visible) { color: var(--accent); }
   gap: .5rem 1.5rem;
   margin-bottom: clamp(2.5rem, 7vw, 4rem);
 }
-.site-title { font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
+.site-title { font: 300 1.25rem/1.4 var(--title); }
 .masthead nav {
   display: flex;
   align-items: center;
