@@ -99,13 +99,6 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: leedom
 
-# Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repository: git@github.com:doruche/doruche.github.io.git
-  branch: main
-
 # CUSTOM
 
 # Search
