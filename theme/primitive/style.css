@@ -202,7 +202,8 @@ time, .tags, .meta, .neighbors span { font-size: .8rem; color: var(--muted); }
 .prose .section-number:is(:hover, :focus-visible) { color: var(--fg); }
 
 /* Contents list for posts with three or more sections. */
-.toc { margin: 0 0 2.75rem; }
+/* A full-width rule marks where the contents end and the body begins. */
+.toc { margin: 0 0 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
 .toc-title { margin: 0 0 .6rem; color: var(--muted); font: .8rem/1.5 var(--mono); }
 .toc ol { margin: 0; padding: 0; list-style: none; }
 .toc a { display: flex; align-items: baseline; gap: .75em; padding: .2rem 0; }
