@@ -5,13 +5,13 @@ This is the source repository for [i.doruche.cc](https://i.doruche.cc), a
 
 ## Local development
 
-Use the Node.js version in `.nvmrc` with its bundled npm.
+Use the Node.js version in `.nvmrc` and the pnpm version in `package.json`.
 
 ```bash
-npm ci
-npm run server
+pnpm install --frozen-lockfile
+pnpm run server
 ```
 
-Generate the site into `public/` with `npm run build`.
+Generate the site into `public/` with `pnpm run build`.
 
 The site is built and deployed by GitHub Actions on pushes to `main`.
