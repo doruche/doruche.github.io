@@ -1,4 +1,4 @@
-<h1 class="visually-hidden">文章</h1>
+<h1 class="visually-hidden" lang="en">Posts</h1>
 <ul class="post-list">
   <% for (const post of posts) { %>
     <li>
@@ -7,7 +7,7 @@
         <span><%= post.title %></span>
       </a>
       <% if (post.tags.length) { %>
-        <ul class="tags" aria-label="标签">
+        <ul class="tags" aria-label="Tags">
           <% for (const tag of post.tags) { %><li><%= tag %></li><% } %>
         </ul>
       <% } %>

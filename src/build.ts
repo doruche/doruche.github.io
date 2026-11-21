@@ -1,7 +1,7 @@
 import { chmodSync, cpSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import ejs from 'ejs';
-import { readPosts, readSite } from './content.ts';
+import { readPages, readPosts, readSite } from './content.ts';
 import { renderMarkdown } from './markdown.ts';
 
 const theme = 'theme/primitive';
@@ -16,14 +16,17 @@ export function build(output: string) {
   const base = new URL(site.url);
   const url = (route: string) => base.pathname.slice(0, -1) + route;
   const posts = readPosts();
-  const postUrls = new Map(posts.map(post => [resolve(post.file), post.url]));
+  const pages = readPages();
+  const routes = new Map([...posts, ...pages].map(entry => [resolve(entry.file), entry.url]));
+  const year = new Date().getFullYear();
   const layout = template('layout');
   const article = template('post');
+  const standalone = template('page');
   const staging = mkdtempSync(resolve(output) + '-');
   try {
     function page(route: string, title: string, body: string) {
       const canonical = new URL(url(route), base.origin).href;
-      const html = layout({ site, url, title, canonical, body });
+      const html = layout({ site, pages, year, url, route, title, canonical, body });
       const file = join(staging, decodeURIComponent(route), 'index.html');
       mkdirSync(dirname(file), { recursive: true });
       writeFileSync(file, html, { flag: 'wx' });
@@ -32,13 +35,17 @@ export function build(output: string) {
     page('/', site.title, template('home')({ posts, url }));
     const groups = Map.groupBy(posts, post => post.date.slice(0, 4));
     const years = Array.from(groups, ([year, posts]) => ({ year, posts }));
-    page('/archives/', `归档 · ${site.title}`, template('archives')({ years, url }));
+    page('/archives/', `Archive · ${site.title}`, template('archives')({ years, url }));
 
     posts.forEach((post, index) => {
-      const html = renderMarkdown(post.markdown, post.file, postUrls, url);
+      const html = renderMarkdown(post.markdown, post.file, routes, url);
       const body = article({ post: { ...post, html }, newer: posts[index - 1], older: posts[index + 1], url });
       page(post.url, `${post.title} · ${site.title}`, body);
     });
+    for (const entry of pages) {
+      const html = renderMarkdown(entry.markdown, entry.file, routes, url);
+      page(entry.url, `${entry.title} · ${site.title}`, standalone({ page: { ...entry, html }, url }));
+    }
     cpSync('assets', join(staging, 'assets'), { recursive: true });
     mkdirSync(join(staging, theme), { recursive: true });
     for (const file of ['style.css', 'LICENSE']) {

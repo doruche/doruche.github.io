@@ -8,7 +8,7 @@ const markdown = new MarkdownIt({ linkify: true }).use(cjkFriendly);
 const assets = resolve('assets');
 
 export function renderMarkdown(
-  source: string, file: string, postUrls: Map<string, string>, sitePath: (route: string) => string,
+  source: string, file: string, routes: Map<string, string>, sitePath: (route: string) => string,
 ) {
   function publishedLink(href: string) {
     if (/^(?:[a-z][a-z\d+.-]*:|\/\/|#|\?)/i.test(href)) return href;
@@ -16,7 +16,7 @@ export function renderMarkdown(
 
     const target = new URL(href, pathToFileURL(resolve(file)));
     const path = fileURLToPath(target);
-    let route = postUrls.get(path);
+    let route = routes.get(path);
     if (!route && path.startsWith(assets + sep) && existsSync(path)) {
       const assetPath = relative(assets, path).split(sep).map(encodeURIComponent).join('/');
       route = '/assets/' + assetPath;

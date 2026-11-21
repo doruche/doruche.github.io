@@ -3,7 +3,7 @@
     <p class="meta">
       <time datetime="<%= post.date %>"><%= post.date %></time>
       <% if (post.tags.length) { %>
-        <span class="tags" aria-label="标签">
+        <span class="tags" aria-label="Tags">
           <% for (const tag of post.tags) { %><span><%= tag %></span><% } %>
         </span>
       <% } %>
@@ -13,12 +13,12 @@
   <div class="prose"><%- post.html %></div>
 </article>
 <% if (newer || older) { %>
-  <nav class="neighbors" aria-label="相邻文章">
+  <nav class="neighbors" aria-label="More posts">
     <% if (newer) { %>
-      <a href="<%= url(newer.url) %>"><span>较新一篇</span><%= newer.title %></a>
+      <a href="<%= url(newer.url) %>"><span lang="en">← Newer</span><%= newer.title %></a>
     <% } %>
     <% if (older) { %>
-      <a class="older" href="<%= url(older.url) %>"><span>较早一篇</span><%= older.title %></a>
+      <a class="older" href="<%= url(older.url) %>"><span lang="en">Older →</span><%= older.title %></a>
     <% } %>
   </nav>
 <% } %>

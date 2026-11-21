@@ -21,7 +21,14 @@ test('builds linked Markdown under a subpath and keeps the last valid build', t 
   const generate = () => execFileSync(process.execPath, [join(import.meta.dirname, '../src/build.ts')], {
     cwd: directory, stdio: 'pipe',
   });
+  const pages = join(directory, 'content/pages');
+  mkdirSync(pages, { recursive: true });
+  writeFileSync(join(pages, 'about.md'), '---\ntitle: About\nupdated: 2026-11-21\n---\n见[文章](../posts/a.md)。');
   generate();
+  const about = readFileSync(join(directory, 'public/about/index.html'), 'utf8');
+  assert.match(about, /<a class="text-link" href="\/blog\/about\/" aria-current="page">About<\/a>/);
+  assert.match(about, /Updated <time datetime="2026-11-21">/);
+  assert.match(about, /href="\/blog\/posts\/a\/">文章/);
   const published = join(directory, 'public/posts/a/index.html');
   const article = readFileSync(published, 'utf8');
   assert.match(article, /五十分钟<s>（没有打错）<\/s>/);
@@ -31,6 +38,10 @@ test('builds linked Markdown under a subpath and keeps the last valid build', t 
   writeFileSync(join(posts, 'b.md'), header.replace('tags: []', 'tag: []'));
   assert.throws(generate, /content\/posts\/b\.md[\s\S]*tags/);
   assert.equal(readFileSync(published, 'utf8'), article);
+  writeFileSync(join(posts, 'b.md'), header);
+  writeFileSync(join(pages, 'posts.md'), '---\ntitle: Posts\nupdated: 2026-11-21\n---\n');
+  assert.throws(generate, /content\/pages\/posts\.md: \/posts\/ is used by the site/);
+  rmSync(join(pages, 'posts.md'));
   rmSync(join(posts, 'b.md'));
   assert.throws(generate, /content\/posts\/a\.md: unknown local link .\/b.md/);
 });

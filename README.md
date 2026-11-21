@@ -25,6 +25,15 @@ tags: []
 ---
 ```
 
-Link to another article with `[title](./other-post.md)`. Keep images in `assets/` and reference them from Markdown with paths such as `../../assets/photo.png`.
+Standalone pages such as About live in `content/pages/<name>.md` and are published at `/<name>/`. Each one appears as a text link in the site navigation, labelled with its title. Pages need these header fields:
+
+```yaml
+---
+title: About
+updated: 2026-11-21
+---
+```
+
+Link to another article with `[title](./other-post.md)`, or from a page with `[title](../posts/other-post.md)`. Keep images in `assets/` and reference them from Markdown with paths such as `../../assets/photo.png`.
 
 Page templates and styles live in `theme/primitive/`. The generator lives in `src/`.

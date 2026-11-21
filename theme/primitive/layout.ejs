@@ -10,14 +10,17 @@
   <link rel="stylesheet" href="<%= url('/theme/primitive/style.css') %>">
 </head>
 <body>
-  <a class="skip-link" href="#main">跳到正文</a>
+  <a class="skip-link" href="#main" lang="en">Skip to content</a>
   <header class="masthead">
     <a class="site-title" href="<%= url('/') %>"><%= site.title %></a>
-    <nav aria-label="站点导航">
-      <a class="icon-link" href="<%= url('/archives/') %>" aria-label="归档">
-        <%- include('icons/archive.svg') %>
-        <span aria-hidden="true">归档</span>
-      </a>
+    <nav aria-label="Site" lang="en">
+      <a class="text-link" href="<%= url('/archives/') %>"<%- route === '/archives/' ? ' aria-current="page"' : '' %>>Archive</a>
+      <% for (const page of pages) { %>
+        <a class="text-link" href="<%= url(page.url) %>"<%- route === page.url ? ' aria-current="page"' : '' %>><%= page.title %></a>
+      <% } %>
+      <% if (site.author.links.length) { %>
+        <span class="nav-divider" aria-hidden="true"></span>
+      <% } %>
       <% for (const link of site.author.links) { %>
         <a class="icon-link" href="<%= link.url %>" aria-label="<%= link.label %>">
           <%- include('icons/' + link.icon + '.svg') %>
@@ -27,5 +30,6 @@
     </nav>
   </header>
   <main id="main"><%- body %></main>
+  <footer class="colophon" lang="en">© <%= year %> <%= site.author.name %></footer>
 </body>
 </html>
