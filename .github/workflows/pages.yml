@@ -1,4 +1,4 @@
-name: Build and deploy Hexo site
+name: Build and deploy blog
 
 on:
   push:
@@ -36,6 +36,7 @@ jobs:
       - name: Build site
         run: |
           pnpm install --frozen-lockfile
+          pnpm run check
           pnpm run build
 
       - name: Upload Pages artifact

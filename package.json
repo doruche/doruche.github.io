@@ -1,26 +1,25 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "doruche-blog",
   "private": true,
+  "type": "module",
   "packageManager": "pnpm@12.16.1",
   "scripts": {
-    "build": "hexo generate",
-    "clean": "hexo clean",
-    "server": "hexo server"
-  },
-  "hexo": {
-    "version": "7.3.0"
+    "build": "node src/build.ts",
+    "server": "node --watch src/server.ts",
+    "check": "tsc --noEmit && node --test test/*.test.ts"
   },
   "dependencies": {
-    "hexo": "^7.3.0",
-    "hexo-generator-archive": "^2.0.0",
-    "hexo-generator-category": "^2.0.0",
-    "hexo-generator-index": "^4.0.0",
-    "hexo-generator-search": "^2.4.3",
-    "hexo-generator-tag": "^2.0.0",
-    "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-marked": "^7.0.0",
-    "hexo-renderer-stylus": "^3.0.1",
-    "hexo-server": "^3.0.0"
+    "chokidar": "^6.0.0",
+    "ejs": "^7.0.2",
+    "markdown-it": "^15.0.3",
+    "markdown-it-cjk-friendly": "^3.0.0",
+    "sirv": "^3.0.2",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
   }
 }
