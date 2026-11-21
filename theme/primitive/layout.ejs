@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="<%= site.language %>">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="<%= site.author.name %>">
+  <title><%= title %></title>
+  <link rel="canonical" href="<%= canonical %>">
+  <link rel="icon" href="<%= url('/assets/favicon.png') %>">
+  <link rel="stylesheet" href="<%= url('/theme/primitive/style.css') %>">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="masthead">
+    <a class="site-title" href="<%= url('/') %>"><%= site.title %></a>
+    <nav aria-label="站点导航">
+      <a href="<%= url('/archives/') %>">归档</a>
+      <% for (const link of site.author.links) { %>
+        <a href="<%= link.url %>"><%= link.label %></a>
+      <% } %>
+    </nav>
+  </header>
+  <main id="main"><%- body %></main>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<article>
+  <header>
+    <time datetime="<%= post.date %>"><%= post.date %></time>
+    <h1><%= post.title %></h1>
+  </header>
+  <div class="prose"><%- post.html %></div>
+</article>
+<% if (newer || older) { %>
+  <nav class="neighbors" aria-label="相邻文章">
+    <% if (newer) { %>
+      <a href="<%= url(newer.url) %>"><span>较新一篇</span><%= newer.title %></a>
+    <% } %>
+    <% if (older) { %>
+      <a class="older" href="<%= url(older.url) %>"><span>较早一篇</span><%= older.title %></a>
+    <% } %>
+  </nav>
+<% } %>

@@ -1,0 +1,14 @@
+<h1>归档</h1>
+<% for (const group of years) { %>
+  <section class="archive">
+    <h2><%= group.year %></h2>
+    <ul class="archive-list">
+      <% for (const post of group.posts) { %>
+        <li>
+          <time datetime="<%= post.date %>"><%= post.date.slice(5) %></time>
+          <a href="<%= url(post.url) %>"><%= post.title %></a>
+        </li>
+      <% } %>
+    </ul>
+  </section>
+<% } %>

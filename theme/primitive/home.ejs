@@ -1,0 +1,9 @@
+<h1 class="visually-hidden">文章</h1>
+<ul class="post-list">
+  <% for (const post of posts) { %>
+    <li>
+      <time datetime="<%= post.date %>"><%= post.date %></time>
+      <a href="<%= url(post.url) %>"><%= post.title %></a>
+    </li>
+  <% } %>
+</ul>
