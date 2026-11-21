@@ -1,6 +1,13 @@
 <article>
-  <header>
-    <time datetime="<%= post.date %>"><%= post.date %></time>
+  <header class="post-header">
+    <p class="meta">
+      <time datetime="<%= post.date %>"><%= post.date %></time>
+      <% if (post.tags.length) { %>
+        <span class="tags" aria-label="标签">
+          <% for (const tag of post.tags) { %><span><%= tag %></span><% } %>
+        </span>
+      <% } %>
+    </p>
     <h1><%= post.title %></h1>
   </header>
   <div class="prose"><%- post.html %></div>

@@ -6,6 +6,11 @@
         <time datetime="<%= post.date %>"><%= post.date %></time>
         <span><%= post.title %></span>
       </a>
+      <% if (post.tags.length) { %>
+        <ul class="tags" aria-label="标签">
+          <% for (const tag of post.tags) { %><li><%= tag %></li><% } %>
+        </ul>
+      <% } %>
     </li>
   <% } %>
 </ul>

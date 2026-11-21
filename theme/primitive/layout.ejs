@@ -14,7 +14,10 @@
   <header class="masthead">
     <a class="site-title" href="<%= url('/') %>"><%= site.title %></a>
     <nav aria-label="站点导航">
-      <a class="archive-link" href="<%= url('/archives/') %>">归档</a>
+      <a class="icon-link" href="<%= url('/archives/') %>" aria-label="归档">
+        <%- include('icons/archive.svg') %>
+        <span aria-hidden="true">归档</span>
+      </a>
       <% for (const link of site.author.links) { %>
         <a class="icon-link" href="<%= link.url %>" aria-label="<%= link.label %>">
           <%- include('icons/' + link.icon + '.svg') %>
