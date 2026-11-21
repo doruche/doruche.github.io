@@ -14,6 +14,7 @@ const siteSchema = z.strictObject({
     name: text,
     links: z.array(z.strictObject({
       label: text,
+      icon: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Expected a theme icon name'),
       url: z.url({ protocol: /^(https?|mailto)$/ }),
     })),
   }),

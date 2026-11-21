@@ -5,8 +5,11 @@ author:
   name: doruche
   links:
     - label: GitHub
+      icon: github
       url: https://github.com/doruche
     - label: Bilibili
+      icon: bilibili
       url: https://space.bilibili.com/375236120
     - label: 邮箱
+      icon: mail
       url: mailto:doruche18@outlook.com
