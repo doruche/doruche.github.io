@@ -38,12 +38,12 @@ export function build(output: string) {
     page('/archive/', `Archive · ${site.title}`, template('archive')({ years, url }));
 
     posts.forEach((post, index) => {
-      const html = renderMarkdown(post.markdown, post.file, routes, url);
-      const body = article({ post: { ...post, html }, newer: posts[index - 1], older: posts[index + 1], url });
+      const { html, sections } = renderMarkdown(post.markdown, post.file, routes, url, { numberSections: true });
+      const body = article({ post: { ...post, html, sections }, newer: posts[index - 1], older: posts[index + 1], url });
       page(post.url, `${post.title} · ${site.title}`, body);
     });
     for (const entry of pages) {
-      const html = renderMarkdown(entry.markdown, entry.file, routes, url);
+      const { html } = renderMarkdown(entry.markdown, entry.file, routes, url);
       page(entry.url, `${entry.title} · ${site.title}`, standalone({ page: { ...entry, html }, url }));
     }
     cpSync('assets', join(staging, 'assets'), { recursive: true });

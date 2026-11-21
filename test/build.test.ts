@@ -16,24 +16,29 @@ test('builds linked Markdown under a subpath and keeps the last valid build', t 
   const posts = join(directory, 'content/posts');
   mkdirSync(posts, { recursive: true });
   const header = '---\ntitle: Example\ndate: 2026-11-21\ntags: []\n---\n';
-  writeFileSync(join(posts, 'a.md'), header + '五十分钟~~（没有打错）~~。见[第二篇](./b.md)。');
+  writeFileSync(join(posts, 'a.md'), header + '五十分钟~~（没有打错）~~。见[第二篇](./b.md)。\n\n## 起\n\n## 用 `code` 承\n\n### 小节\n\n## 转');
   writeFileSync(join(posts, 'b.md'), header);
   const generate = () => execFileSync(process.execPath, [join(import.meta.dirname, '../src/build.ts')], {
     cwd: directory, stdio: 'pipe',
   });
   const pages = join(directory, 'content/pages');
   mkdirSync(pages, { recursive: true });
-  writeFileSync(join(pages, 'about.md'), '---\ntitle: About\nupdated: 2026-11-21\n---\n见[文章](../posts/a.md)。');
+  writeFileSync(join(pages, 'about.md'), '---\ntitle: About\nupdated: 2026-11-21\n---\n见[文章](../posts/a.md)。\n\n## Contact');
   generate();
   const about = readFileSync(join(directory, 'public/about/index.html'), 'utf8');
   assert.match(about, /<a class="text-link" href="\/blog\/about\/" aria-current="page">About<\/a>/);
   assert.match(about, /Updated <time datetime="2026-11-21">/);
   assert.match(about, /href="\/blog\/posts\/a\/">文章/);
+  assert.match(about, /<h2>Contact<\/h2>/);
   const published = join(directory, 'public/posts/a/index.html');
   const article = readFileSync(published, 'utf8');
   assert.match(article, /五十分钟<s>（没有打错）<\/s>/);
   assert.match(article, /href="\/blog\/posts\/b\/">第二篇/);
   assert.match(article, /rel="canonical" href="https:\/\/example.org\/blog\/posts\/a\/"/);
+  assert.match(article, /<h2 id="section-2"><span class="section-heading"><a class="section-number" href="#section-2" aria-label="Section 2">§2<\/a>用 <code>code<\/code> 承<\/span><\/h2>/);
+  assert.match(article, /<h3>小节<\/h3>/);
+  assert.match(article, /<a href="#section-2"><span class="toc-number">§2<\/span><span class="toc-text">用 code 承<\/span><\/a>/);
+  assert.doesNotMatch(readFileSync(join(directory, 'public/posts/b/index.html'), 'utf8'), /class="toc"/);
 
   writeFileSync(join(posts, 'b.md'), header.replace('tags: []', 'tag: []'));
   assert.throws(generate, /content\/posts\/b\.md[\s\S]*tags/);

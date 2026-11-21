@@ -10,6 +10,16 @@
     </p>
     <h1><%= post.title %></h1>
   </header>
+  <% if (post.sections.length >= 3) { %>
+    <nav class="toc" aria-labelledby="toc-title">
+      <p class="toc-title" id="toc-title" lang="en">Contents</p>
+      <ol>
+        <% for (const section of post.sections) { %>
+          <li><a href="#<%= section.id %>"><span class="toc-number">§<%= section.number %></span><span class="toc-text"><%= section.title %></span></a></li>
+        <% } %>
+      </ol>
+    </nav>
+  <% } %>
   <div class="prose"><%- post.html %></div>
 </article>
 <% if (newer || older) { %>
